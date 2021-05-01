@@ -45,8 +45,8 @@ jobs:
          # Push is a shorthand for --output=type=registry
          push: true # optional, default is false
          tags: |
-          fernsuyama/api-bootcamp-produto:latest
-          fernsuyama/api-bootcamp-produto:${{github.run_number}}
+          fernandosuyama/api-bootcamp-produto:latest
+          fernandosuyama/api-bootcamp-produto:${{github.run_number}}
           
   CD:
    runs-on: ubuntu-latest
