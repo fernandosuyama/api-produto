@@ -77,8 +77,8 @@ jobs:
         with:
           images: fernsuyama/api-bootcamp-produto:${{github.run_number}}
           manifests: |
-            k8s/api/deployment.yaml
-            k8s/api/service.yaml
+            src/k8s/api/deployment.yaml
+            src/k8s/api/service.yaml
       
       
       
