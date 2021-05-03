@@ -1,9 +1,9 @@
 ---
 swagger: "2.0"
 info:
-  description: "API de Cadastro de Produtos - Nova versão - deploy Kubernetes Digital Oceane"
-  version: "2.0.0"
-  title: "Cadastro de Produtos - Nova versão - deploy Kubernetes Digital Oceane"
+  description: "API de Cadastro de Produtos - Versão 3.0.0 na Digital Ocean"
+  version: "3.0.0"
+  title: "Cadastro de Produtos - Versão 3.0.0 na Digital Ocean"
   contact:
     email: "fabricio@veronez.dev"
 paths:
