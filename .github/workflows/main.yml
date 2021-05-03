@@ -22,7 +22,7 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-      
+  
       - name: Docker Login
         # You may pin to the exact commit or the version.
         # uses: docker/login-action@28218f9b04b4f3f62068d7b6ce6ca5b26e35336c
@@ -34,20 +34,21 @@ jobs:
           password: ${{secrets.DOCKERHUB_PWD}}
       
       - name: Build and push Docker images
-        # You may pin to the exact commit or the version.
-        # uses: docker/build-push-action@e1b7f96249f2e4c8e4ac1519b9608c0d48944a1f
+      # You may pin to the exact commit or the version.
+      # uses: docker/build-push-action@e1b7f96249f2e4c8e4ac1519b9608c0d48944a1f
         uses: docker/build-push-action@v2.4.0
         with:
-         # Build's context is the set of files located in the specified PATH or URL
-         context: ./src
-         # Path to the Dockerfile
-         file: ./src/Dockerfile
-         # Push is a shorthand for --output=type=registry
-         push: true # optional, default is false
-         tags: |
-          fernsuyama/api-bootcamp-produto:latest
-          fernsuyama/api-bootcamp-produto:${{github.run_number}}
-          
+            # Build's context is the set of files located in the specified PATH or URL
+            context: ./src
+            # Path to the Dockerfile
+            file: ./src/Dockerfile
+            push: true
+            tags: |
+              fernsuyama/api-bootcamp-produto:latest
+              fernsuyama/api-bootcamp-produto:${{github.run_number}}
+              
+              
+   # This workflow contains a single job called "build"
   CD:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
@@ -63,18 +64,21 @@ jobs:
           method: kubeconfig
           # Kubernetes Config
           kubeconfig: ${{secrets.k8S_CONFIG}}
-    
+          
       - name: Deploy MongoDB
         uses: Azure/k8s-deploy@v1.3
         with:
-         manifests: |
-          k8s/mongodb/deployment.yaml
-          k8s/mongodb/service.yaml
-
+          manifests: |
+            k8s/mongodb/deployment.yaml
+            k8s/mongodb/service.yaml
+          
       - name: Deploy WebApi
         uses: Azure/k8s-deploy@v1.3
         with:
-         images: fernsuyama/api-bootcamp-produto:${{github.run_number}}
-         manifests: |
-          k8s/api/deployment.yaml
-          k8s/api/service.yaml
+          images: fernsuyama/api-bootcamp-produto:${{github.run_number}}
+          manifests: |
+            k8s/api/deployment.yaml
+            k8s/api/service.yaml
+      
+      
+      
